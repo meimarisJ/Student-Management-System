@@ -27,21 +27,25 @@ if students is not None:
         for number , option in enumerate(options, start=1):
             print(f"{number}. {option}")
         choice = int(input("\nChoose an option.\n"))
-        if choice == 1:
+        if choice == 1: # Show all Students
+            
             for number, student in enumerate (students, start=1):
                 print(f"{number}. {student}")
             print()
 
             
-        elif choice == 2:
+        elif choice == 2: # Add Student
+            
             result =add_student(students)
             with open("Json/students.json","w") as file:
                 json.dump(students,file, indent= 4)   
-        elif choice == 3:
+        elif choice == 3: #Remove Students
+            
             remove_student(students , input("Enter the name of the student to remove: "))
             with open("Json/students.json","w") as file:
                     json.dump(students,file, indent= 4) 
-        elif choice == 4:
+        elif choice == 4: #Filter Students with min age, min grade
+            
             min_grade = int(input("Enter minimum grade: "))
             min_age = int(input("Enter minimum age: "))
             result = get_students(students,min_grade,min_age)
@@ -55,7 +59,8 @@ if students is not None:
                 print()
                 with open("Json/filtered_students.json", "w") as file:
                     json.dump(result,file, indent = 4)
-        elif choice == 5 :
+                    
+        elif choice == 5 : # Show avg grade , max grade, min grade , number of students that passed (grade >= 10) and best student based on grade.
             result = analyze_students(students)
             if result is None:
                 print("No students to analyze.\n")
@@ -63,7 +68,8 @@ if students is not None:
                 for key, value in result.items():
                     print(f"{key}: {value}")
                 print()
-        elif choice == 6:
+        elif choice == 6: # Exit Program
+            
             print("\nExiting program.")
             break
         else:
